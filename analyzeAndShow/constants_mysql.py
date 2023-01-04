@@ -25,6 +25,9 @@ db_names = ["UKSW_ANIMALS_RESULTS", "UKSW_APPEARANCE_RESULTS", "UKSW_ART_RESULTS
             "UKSW_TRANSPORT_BY_CAR_OR_LORRY_RESULTS", "UKSW_TRANSPORT_BY_WATER_RESULTS",
             "UKSW_TV_RADIO_AND_NEWS_RESULTS", "UKSW_WAR_AND_CONFLICT_RESULTS", "UKSW_WEATHER_RESULTS",
             "UKSW_WORKING_LIFE_RESULTS"]
+
+categories = list(map(lambda x: x.split("_")[1:-1], db_names))
+
 #%%
 tb_names = ["BelarusianVsEnglish", "BelarusianVsFrench", "BelarusianVsGerman", "BelarusianVsPolish",
             "BelarusianVsSpanish", "BulgarianVsBelarusian", "BulgarianVsEnglish", "BulgarianVsFrench",
@@ -89,6 +92,6 @@ tb_names = ["BelarusianVsEnglish", "BelarusianVsFrench", "BelarusianVsGerman", "
             "SpanishVsGerman", "WelshVsBelarusian", "WelshVsBulgarian", "WelshVsCzech", "WelshVsEnglish",
             "WelshVsFrench", "WelshVsGerman", "WelshVsPolish", "WelshVsSpanish"]
 #%%
-lang_list = ['English', 'Belarusian', 'French', 'German', 'Polish', 'Spanish', 'Bulgarian', 'Croatian', 'Czech',
+languages = ['English', 'Belarusian', 'French', 'German', 'Polish', 'Spanish', 'Bulgarian', 'Croatian', 'Czech',
              'Danish', 'Estonian', 'Finish', 'Greek', 'Irish', 'Welsh', 'Georgian', 'Hungarian', 'Italian', 'Latin',
              'Macedonian', 'Norwegian', 'Portuguese', 'Romansh', 'Serbian', 'Slovak']
