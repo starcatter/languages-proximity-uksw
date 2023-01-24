@@ -84,7 +84,16 @@ public class WordGraph {
             wordGraph.display(true);
         }
         if (this.screenShot) {
-            String filename = String.join("_", aggLabels) + "_" + String.join("_", nodesArray) + ".png";
+            String label_name = String.join("_", aggLabels);
+            int max_len = 100;
+            if (label_name.length() > max_len) {
+                label_name = label_name.substring(0, max_len) + "_etc";
+            }
+            String node_name =  String.join("_", nodesArray);
+            if (node_name.length() > max_len) {
+                node_name = node_name.substring(0, max_len) + "_etc";
+            }
+            String filename = label_name + "_" + node_name + ".png";
             screenshot(wordGraph, filename);
         }
 

@@ -15,9 +15,9 @@ cd analyzeAndShow || echo "python sources not found"
 if [[ -d venv ]]; then
   source venv/bin/activate
 else
-  python3 -m venv venv;
+  python3 -m venv venv
   source venv/bin/activate
-  pip3 install -r requirements.txt
 fi
+pip3 install -r requirements.txt
 deactivate
 )

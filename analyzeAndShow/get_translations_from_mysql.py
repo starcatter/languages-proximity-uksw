@@ -6,7 +6,7 @@ from functools import reduce
 from unidecode import unidecode
 import re
 
-from analyzeAndShow.constants_mysql import tb_names, languages, db_names
+from analyzeAndShow.constants_mysql import tb_names, all_languages, db_names
 
 
 def get_df_from_db(db_name):
@@ -17,7 +17,7 @@ def get_df_from_db(db_name):
         tb_list.append(res)
     tb_df = reduce(lambda left, right: pd.merge(left, right, on=['id', ], how='inner', suffixes=("", "_1")), tb_list)
     tb_df = (tb_df.T.drop_duplicates()).T
-    only_translations = tb_df[languages].applymap(unidecode).applymap(str.lower).applymap(lambda x: re.sub(r'[^a-zA-Z ]', "", x))
+    only_translations = tb_df[all_languages].applymap(unidecode).applymap(str.lower).applymap(lambda x: re.sub(r'[^a-zA-Z ]', "", x))
     return (" ".join(db_name.split("_")[1:-1]), only_translations)
 
 with Pool(24) as pool:

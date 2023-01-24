@@ -6,18 +6,18 @@ import os
 from itertools import combinations, starmap
 from multiprocessing import Pool
 from typing import List, Any
+from joblib import Parallel, delayed
 
 import pandas as pd
 from pandas import DataFrame
 from scipy.spatial.distance import euclidean
 
+from analyzeAndShow.constants_mysql import all_languages
 from analyzeAndShow.word_metrics import functions_dict
 
-data_filename = os.path.join(os.path.dirname(__file__),"translations.csv.xz")
+data_filename = os.path.join(os.path.dirname(__file__), "translations.csv.xz")
 
 translations_df = pd.read_csv(data_filename, index_col=0)
-
-
 
 jar_path = glob.glob(os.path.join(os.path.dirname(__file__), "../displayInGraphStream/target/*dependencies.jar"), recursive=True)[0]
 
@@ -51,11 +51,13 @@ def _get_graph_coords(languages: List[str] | str = None, categories: List[str] |
     """
     categories_in = copy.deepcopy(categories)
     languages_in = copy.deepcopy(languages)
-    if categories == "all":
-        categories = list(set(translations_df.index))
     if isinstance(categories, str):
         categories = [categories]
-    if languages == "all":
+    if categories == ["all"]:
+        categories = list(set(translations_df.index))
+    if isinstance(languages, str):
+        languages = [languages]
+    if languages == ["all"]:
         languages = translations_df.columns.tolist()
     languages = list(set(languages))
     categories = list(set(categories))
@@ -69,12 +71,12 @@ def _get_graph_coords(languages: List[str] | str = None, categories: List[str] |
     metric_fun = functions_dict[metric]
     reduced_df = translations_df[languages].loc[categories]
     iter_lang = ((reduced_df[lang1], reduced_df[lang2]) for lang1, lang2 in combinations(languages, 2))
-
     if n_cpu == 1:
         lang_res = list(starmap(metric_fun, iter_lang))
     else:
-        with Pool(n_cpu) as pool:
-            lang_res = pool.starmap(metric_fun, iter_lang)
+        lang_res = Parallel(n_jobs=n_cpu)(delayed(metric_fun)(reduced_df[lang1], reduced_df[lang2]) for lang1, lang2 in combinations(languages, 2))
+        # with Pool(n_cpu) as pool:
+        #     lang_res = pool.starmap(metric_fun, iter_lang)
     dist_df = pd.DataFrame(data=lang_res, index=list(combinations(languages, 2)), columns=reduced_df.index).T.astype('double')
 
     if node_type == "lang":
@@ -98,3 +100,7 @@ def _get_graph_coords(languages: List[str] | str = None, categories: List[str] |
 def produce_graph(languages: List[str] | str = None, categories: List[str] | str = None, node_type: str = "lang", metric: str = None, n_cpu=1, display=False, print_screen=True):
     stats_df, closeness_df, agg_labels = _get_graph_coords(languages, categories, node_type, metric, n_cpu)
     _send_to_graphstream(stats_df, closeness_df, agg_labels, display, print_screen)
+
+
+if __name__ == "__main__":
+    _get_graph_coords(languages=all_languages[:10], categories="all", node_type="lang", metric="Levenshtein", n_cpu=24)

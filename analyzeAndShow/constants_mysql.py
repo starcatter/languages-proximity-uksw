@@ -13,7 +13,14 @@ db_names = ["UKSW_ANIMALS_RESULTS", "UKSW_APPEARANCE_RESULTS", "UKSW_ART_RESULTS
             "UKSW_THE_ENVIRONMENT_RESULTS", "UKSW_TIME_RESULTS", "UKSW_TRANSPORT_BY_AIR_RESULTS", "UKSW_TRANSPORT_BY_BUS_AND_TRAIN_RESULTS", "UKSW_TRANSPORT_BY_CAR_OR_LORRY_RESULTS",
             "UKSW_TRANSPORT_BY_WATER_RESULTS", "UKSW_TV_RADIO_AND_NEWS_RESULTS", "UKSW_WAR_AND_CONFLICT_RESULTS", "UKSW_WEATHER_RESULTS", "UKSW_WORKING_LIFE_RESULTS"]
 
-categories = list(map(" ".join, map(lambda x: x.split("_")[1:-1], db_names)))
+all_categories = ['ANIMALS', 'APPEARANCE', 'ART', 'BIOLOGY', 'BIRDS', 'BODY', 'BUILDINGS', 'BUSINESS', 'CHANGE CAUSE AND EFFECT', 'CLOTHES AND FASHION', 'COLOURS AND SHAPES', 'COMPUTERS',
+                  'COOKING AND EATING', 'CRIME AND PUNISHMENT', 'DANGER', 'DIFFICULTY AND FAILURE', 'DISABILITY', 'DISCUSSION AND AGREEMENT', 'DOUBT GUESSING AND CERTAINTY', 'DRINKS', 'EDUCATION',
+                  'ENGINEERING', 'FAMILY AND RELATIONSHIPS', 'FARMING', 'FEELINGS', 'FILM AND THEATRE', 'FISH AND SHELLFISH', 'FOOD', 'GAMES AND TOYS', 'GARDENS', 'GEOGRAPHY', 'HEALTHCARE',
+                  'HEALTH AND FITNESS', 'HEALTH PROBLEMS', 'HISTORY', 'HOBBIES', 'HOLIDAYS', 'HOUSES AND HOMES', 'INSECTS WORMS ETC', 'JOBS', 'LANGUAGE', 'LAW AND JUSTICE', 'LIFE STAGES',
+                  'LITERATURE AND WRITING', 'MATHS AND MEASUREMENT', 'MENTAL HEALTH', 'MONEY', 'MUSIC', 'OPINION AND ARGUMENT', 'PEOPLE IN SOCIETY', 'PERMISSION AND OBLIGATION', 'PERSONAL QUALITIES',
+                  'PHONES EMAIL AND THE INTERNET', 'PHYSICS AND CHEMISTRY', 'PLANTS AND TREES', 'POLITICS', 'PREFERENCES AND DECISIONS', 'RELIGION AND FESTIVALS', 'SCIENTIFIC RESEARCH', 'SHOPPING',
+                  'SOCIAL ISSUES', 'SPACE', 'SPORTS BALL AND RACKET SPORTS', 'SPORTS OTHER SPORTS', 'SPORTS WATER SPORTS', 'SUCCESS', 'SUGGESTIONS AND ADVICE', 'THE ENVIRONMENT', 'TIME',
+                  'TRANSPORT BY AIR', 'TRANSPORT BY BUS AND TRAIN', 'TRANSPORT BY CAR OR LORRY', 'TRANSPORT BY WATER', 'TV RADIO AND NEWS', 'WAR AND CONFLICT', 'WEATHER', 'WORKING LIFE']
 
 # %%
 tb_names = ["BelarusianVsEnglish", "BelarusianVsFrench", "BelarusianVsGerman", "BelarusianVsPolish", "BelarusianVsSpanish", "BulgarianVsBelarusian", "BulgarianVsEnglish", "BulgarianVsFrench",
@@ -51,5 +58,5 @@ tb_names = ["BelarusianVsEnglish", "BelarusianVsFrench", "BelarusianVsGerman", "
             "SlovakVsIrish", "SlovakVsItalian", "SlovakVsLatvian", "SlovakVsMacedonian", "SlovakVsNorwegian", "SlovakVsPolish", "SlovakVsPortuguese", "SlovakVsRomansh", "SlovakVsSpanish",
             "SlovakVsWelsh", "SpanishVsGerman", "WelshVsBelarusian", "WelshVsBulgarian", "WelshVsCzech", "WelshVsEnglish", "WelshVsFrench", "WelshVsGerman", "WelshVsPolish", "WelshVsSpanish"]
 # %%
-languages = ['English', 'Belarusian', 'French', 'German', 'Polish', 'Spanish', 'Bulgarian', 'Croatian', 'Czech', 'Danish', 'Estonian', 'Finish', 'Greek', 'Irish', 'Welsh', 'Georgian', 'Hungarian',
-             'Italian', 'Latin', 'Macedonian', 'Norwegian', 'Portuguese', 'Romansh', 'Serbian', 'Slovak']
+all_languages = ['English', 'Belarusian', 'French', 'German', 'Polish', 'Spanish', 'Bulgarian', 'Croatian', 'Czech', 'Danish', 'Estonian', 'Finish', 'Greek', 'Irish', 'Welsh', 'Georgian', 'Hungarian',
+                 'Italian', 'Latin', 'Macedonian', 'Norwegian', 'Portuguese', 'Romansh', 'Serbian', 'Slovak']
